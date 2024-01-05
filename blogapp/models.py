@@ -8,14 +8,7 @@ class Blog(models.Model):
     
     def __str__(self):
         return self.blog_name
-    
-    
-class Tag(models.Model):
-     tag_name = models.CharField(max_length=100)
-     
-     def __str__(self):
-        return self.tag_name
-    
+
     
     
 class Author(models.Model):
@@ -30,11 +23,20 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
     update_date = models.DateTimeField("Last update", default=timezone.now)
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.ManyToManyField("Tag", blank=True, related_name="tags_on_post")
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.title  
+
+
+class Tag(models.Model):
+     tag_name = models.CharField(max_length=100)
+     posts = models.ManyToManyField(Post, blank=True, related_name="posts_under_tag")
+     
+     def __str__(self):
+        return self.tag_name
+    
     
      
     
