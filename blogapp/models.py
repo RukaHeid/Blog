@@ -9,7 +9,7 @@ class Blog(models.Model):
     def __str__(self):
         return self.blog_name
 
-    
+        
     
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -38,7 +38,7 @@ class Tag(models.Model):
      def __str__(self):
         return self.tag_name
     
-    
+
          
     
 class Comment(models.Model):
