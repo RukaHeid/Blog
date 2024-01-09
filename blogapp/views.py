@@ -5,9 +5,11 @@ from blogapp.models import Blog, Post, Comment, Tag, Author
 # Create your views here.
 
 class IndexView(generic.ListView):
-    template_name = "blogapp/index.htlm"
-    context_object_name = "latest_post_list"
-    queryset = Post.objects.all()
+    template_name = "blogapp/index.html"
+    context_object_name = "post_list"
+    
+    def get_queryset(self):
+        return Post.objects.all()
 
 class PostDetailView(generic.DetailView):
     model = Post
