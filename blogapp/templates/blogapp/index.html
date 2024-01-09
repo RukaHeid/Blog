@@ -1,0 +1,13 @@
+{% if post_list %}
+    <ul>
+        {% for post in post_list %}
+            <li>
+                <a href="{% url 'blogapp:post_detail' post.id %}">{{ post.title }}</a>
+                {{ post.author }}
+                {{ post.update_date }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}
