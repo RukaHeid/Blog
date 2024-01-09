@@ -22,7 +22,7 @@ class Author(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
-    update_date = models.DateTimeField("Last update", default=timezone.now)
+    update_date = models.DateField("Last update", default=timezone.now)
     tags = models.ManyToManyField("Tag", blank=True, related_name="tags_on_post")
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     
