@@ -30,6 +30,7 @@ class Post(models.Model):
         return self.title  
 
 
+
 class Tag(models.Model):
      tag_name = models.CharField(max_length=100)
      posts = models.ManyToManyField(Post, blank=True, related_name="posts_under_tag")
@@ -38,8 +39,7 @@ class Tag(models.Model):
         return self.tag_name
     
     
-     
-    
+         
     
 class Comment(models.Model):
     post = models.ForeignKey(Post,  on_delete=models.CASCADE)
