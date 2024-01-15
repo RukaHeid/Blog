@@ -9,7 +9,7 @@ class IndexView(generic.ListView):
     context_object_name = "post_list"
     
     def get_queryset(self):
-        return Post.objects.all()
+        return Post.objects.all().order_by("-update_date")
 
 class PostDetailView(generic.DetailView):
     model = Post
