@@ -1,10 +1,13 @@
 <h1>Welcome to Ruka's Blog!</h1>
 
+<h2>My Posts:</h2>
+    
 {% if post_list %}
     <ul>
         {% for post in post_list %}
             <li>
-                <a href="{% url 'blogapp:post_detail' post.id %}">{{ post.title }}</a>
+                <strong><a href="{% url 'blogapp:post_detail' post.id %}">{{ post.title }}</a></strong>
+                <br>
                 {{ post.author }}
                 {{ post.update_date }}
             </li>
@@ -13,3 +16,5 @@
 {% else %}
     <p>No posts are available.</p>
 {% endif %}
+
+<h2>Make a new post:</h2>
