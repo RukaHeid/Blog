@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% block main %}
+
+<h1> Delete confirmation </h1>
+<p>Are you sure you want to delete <strong>{{ object.title }}</strong>？</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    <input type="reset" value="Cancel">
+</form>
+{% block end %}

@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "blogapp/base.html" %}
+{% block main %}
 
     <h1>{{ post.title }}</h1>
     <h2>Posted by {{ post.author }}. Update: {{ post.update_date }}</h2>
@@ -14,5 +13,9 @@
     {% endif %}
 
     <p>{{ post.body }}</p>
-</body>
-</html>
+
+
+    <a href="{% url 'blogapp:update' object.pk %}">Edit this post</a>
+    <br>
+    <a href="{% url 'blogapp:delete' object.pk %}">Delete this post</a>
+{% endblock %}

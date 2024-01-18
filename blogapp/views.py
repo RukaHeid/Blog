@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic 
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from blogapp.models import Blog, Post, Comment, Tag, Author
 
 
@@ -24,3 +24,12 @@ class NewPostForm(CreateView):
     model = Post
     fields = ["title", "body", "author", "tags"]
     
+    
+class UpdatePost(UpdateView):
+    model = Post
+    fields = ["title", "body", "author", "tags"]
+    
+    
+class DeletePost(DeleteView):
+    model = Post
+    success_url = "blogapp:index.html"
