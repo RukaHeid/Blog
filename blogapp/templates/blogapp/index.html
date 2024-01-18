@@ -1,9 +1,10 @@
-<h1>Welcome to Ruka's Blog!</h1>
+{% extends "blogapp/base.html" %}
+{% block main %}
+    <head>
+        <title>Welcome to Ruka's Blog!</title>
 
-<h2>My Posts:</h2>
-    
-{% if post_list %}
-    <ul>
+        <h2>My Posts:</h2>
+        <ul>
         {% for post in post_list %}
             <li>
                 <strong><a href="{% url 'blogapp:post_detail' post.id %}">{{ post.title }}</a></strong>
@@ -11,10 +12,8 @@
                 {{ post.author }}
                 {{ post.update_date }}
             </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No posts are available.</p>
-{% endif %}
+            {% endfor %}
+        </ul>
 
-<h2>Make a new post:</h2>
+        <p><a href="{% url 'blogapp:new_post' %}">Create New Post</a></p>
+{% endblock %}

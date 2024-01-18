@@ -24,7 +24,7 @@ class Post(models.Model):
     body = models.TextField()
     update_date = models.DateField("Last update", default=timezone.now)
     tags = models.ManyToManyField("Tag", blank=True, related_name="tags_on_post")
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.title  

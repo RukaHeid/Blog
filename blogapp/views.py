@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views import generic 
+from django.views.generic.edit import CreateView
 from blogapp.models import Blog, Post, Comment, Tag, Author
+
+
 
 # Create your views here.
 
@@ -10,7 +13,14 @@ class IndexView(generic.ListView):
     
     def get_queryset(self):
         return Post.objects.all().order_by("-update_date")
+    
 
 class PostDetailView(generic.DetailView):
     model = Post
     template_name = "blogapp/detail.html"
+
+
+class NewPostForm(CreateView):
+    model = Post
+    fields = ["title", "body", "author", "tags"]
+    
