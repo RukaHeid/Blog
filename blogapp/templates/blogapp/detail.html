@@ -2,7 +2,9 @@
 {% block main %}
 
     <h1>{{ post.title }}</h1>
-    <h2>Posted by {{ post.author }}. Update: {{ post.update_date }}</h2>
+
+    <br>
+    <h3>Posted by {{ post.author }}. Update: {{ post.update_date }}</h3>
     
     {% if post.tags.all %}
         <h3>
@@ -12,9 +14,30 @@
         </h3>
     {% endif %}
 
+    <br>
+
     <p>{{ post.body }}</p>
 
+    <br>
+    <br>
 
+    <h2>Comments:</h2>
+    <ul>
+        {% for comment in comment_list %}
+            <li>
+                {{ comment.name }}
+                <br>
+                {{ comment.comment_PostedDate }}
+                {{comment.comments}}
+            </li>
+            {% endfor %}
+        </ul>
+    
+    <br>
+    <br>
+
+    <a href="{% url 'blogapp:comment' object.pk %}">Write Comments</a>
+    <br>
     <a href="{% url 'blogapp:update' object.pk %}">Edit this post</a>
     <br>
     <a href="{% url 'blogapp:delete' object.pk %}">Delete this post</a>

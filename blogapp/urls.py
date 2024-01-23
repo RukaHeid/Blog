@@ -9,5 +9,6 @@ urlpatterns =[
     path("newpost/", views.NewPostForm.as_view(), name="new_post"),
     path("update/<int:pk>", views.UpdatePost.as_view(), name="update"),
     path("delete/<int:pk>", views.DeletePost.as_view(), name="delete"),
+    path("comment/<int:pk>", views.CommentForm.as_view(), name="comment")
 
 ]

@@ -23,6 +23,12 @@ class PostDetailView(generic.DetailView):
 class NewPostForm(CreateView):
     model = Post
     fields = ["title", "body", "author", "tags"]
+
+
+class CommentForm(CreateView):
+    model = Comment
+    fields = ["comments", "name"]
+    context_object_name = "comment_list"
     
     
 class UpdatePost(UpdateView):
@@ -32,4 +38,4 @@ class UpdatePost(UpdateView):
     
 class DeletePost(DeleteView):
     model = Post
-    success_url = "blogapp:index.html"
+    success_url = "blogapp:post_detail.html"
