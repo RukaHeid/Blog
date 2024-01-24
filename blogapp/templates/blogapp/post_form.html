@@ -13,16 +13,6 @@
     <input type="text" id="author" name="author" required>
 
     <br>
-    
-    <label for="tags">Tags:</label>
-    <input list="tag_list" id="tags" name="tags">
-    <datalist id="tag_list">
-        {% for tag in tag_list %}
-            <option value="{{ tag.tag_name }}"></option>
-        {% endfor %}
-    </datalist>
-
-    <br>
 
     <label for="body">Body:</label>
     <textarea id="body" name="body" rows="3" cols="30" required></textarea>
