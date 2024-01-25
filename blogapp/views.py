@@ -21,6 +21,14 @@ class IndexView(generic.ListView):
 class PostDetailView(generic.DetailView):
     model = Post
     template_name = "blogapp/detail.html"
+    
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        comments = Comment.objects.filter(post=post)
+        context["comment_list"] = comments
+        return context
+    
 
 
 def CreatePost(request):
