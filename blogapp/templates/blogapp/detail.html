@@ -5,7 +5,7 @@
 
     <br>
     <br>
-    
+
     <h1>{{ post.title }}</h1>
     
     {% if post.tags.all %}
@@ -27,9 +27,9 @@
     <ul>
         {% for comment in comment_list %}
             <li>
-                <i><h5>{{comment.comments}}</h5></i>
-                投稿者: {{ comment.name }}
-                投稿日: {{ comment.comment_PostedDate }}
+                <i><h6>{{comment.comments}}</h6></i>
+                <h9>投稿者: {{ comment.name }}</h9>
+                <h9>投稿日: {{ comment.comment_PostedDate }}</h9>
             </li>
             {% endfor %}
         </ul>
