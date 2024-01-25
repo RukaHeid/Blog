@@ -1,5 +1,5 @@
 from typing import Any
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic 
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from blogapp.models import Blog, Post, Comment, Tag, Author
@@ -16,6 +16,7 @@ class IndexView(generic.ListView):
     
     def get_queryset(self):
         return Post.objects.all().order_by("-update_date")
+    
     
 
 class PostDetailView(generic.DetailView):
@@ -46,15 +47,27 @@ def CreatePost(request):
     return render(request, "blogapp/create_post.html", context)
 
 
+
 class CommentForm(CreateView):
     model = Comment
     fields = ["comments", "name"]
     context_object_name = "comment_list"
     
+    def form_valid(self, form):
+        post_id = self.kwargs['pk'] 
+        post = get_object_or_404(Post, id=post_id)
+        form.instance.post = post
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('blogapp:post_detail', args=[self.kwargs['pk']])
+    
+    
     
 class UpdatePost(UpdateView):
     model = Post
     fields = ["title", "body", "author", "tags"]
+    template_name = "blogapp/create_post.html"
     
     
 class DeletePost(DeleteView):

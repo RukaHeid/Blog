@@ -47,7 +47,6 @@ class Tag(models.Model):
     
 class Comment(models.Model):
     post = models.ForeignKey(Post,  on_delete=models.CASCADE)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     comments = models.TextField()
     comment_PostedDate = models.DateTimeField("Date of comments", default=timezone.now)
     name = models.CharField(max_length=100)
