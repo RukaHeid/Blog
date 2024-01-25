@@ -1,0 +1,17 @@
+{% extends "blogapp/base.html" %}
+{% block main %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <datalist id="tag_list">
+        {% for tag in tags %}
+        <option value="{{ tag.id }}">{{ tag.name }}</option>
+        {%endfor%}
+    </datalist>
+
+    <input type="submit" value="Post">
+
+</form>
+{% endblock %}

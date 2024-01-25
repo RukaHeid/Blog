@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from typing import Any
+from django.shortcuts import render, redirect
 from django.views import generic 
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from blogapp.models import Blog, Post, Comment, Tag, Author
+from django.urls import reverse_lazy
+from .forms import PostForm
 
 
 
@@ -20,9 +23,19 @@ class PostDetailView(generic.DetailView):
     template_name = "blogapp/detail.html"
 
 
-class NewPostForm(CreateView):
-    model = Post
-    fields = ["title", "body", "author", "tags"]
+def CreatePost(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return redirect("blogapp:post_detail", post.id)
+    else:
+        form = PostForm()
+        context = {
+            "form" : form,
+            "tags" : Tag.objects.all(),
+        }
+    return render(request, "blogapp/create_post.html", context)
 
 
 class CommentForm(CreateView):
@@ -38,4 +51,4 @@ class UpdatePost(UpdateView):
     
 class DeletePost(DeleteView):
     model = Post
-    success_url = "blogapp:post_detail.html"
+    success_url = reverse_lazy("blogapp:index")
