@@ -1,9 +1,9 @@
 {% extends "blogapp/base.html" %}
 {% block main %}
     <head>
-        <title>Welcome to Ruka's Blog!</title>
+        <title>ハイデッカー家の猫日記</title>
 
-        <h2>My Posts:</h2>
+        <h2>最近の投稿:</h2>
         <ul>
         {% for post in post_list %}
             <li>
@@ -15,5 +15,5 @@
             {% endfor %}
         </ul>
 
-        <p><a href="{% url 'blogapp:create_post' %}">Create New Post</a></p>
+        <p><a href="{% url 'blogapp:create_post' %}">新規作成</a></p>
 {% endblock %}
