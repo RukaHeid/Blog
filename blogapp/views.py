@@ -31,20 +31,10 @@ class PostDetailView(generic.DetailView):
         return context
     
 
-
-def CreatePost(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save()
-            return redirect("blogapp:post_detail", post.id)
-    else:
-        form = PostForm()
-        context = {
-            "form" : form,
-            "tags" : Tag.objects.all(),
-        }
-    return render(request, "blogapp/create_post.html", context)
+class CreatePostView(generic.CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = "blogapp/create_post.html"
 
 
 
