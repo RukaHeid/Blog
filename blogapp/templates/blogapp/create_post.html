@@ -6,12 +6,13 @@
     {{ form.as_p }}
 
     <datalist id="tag_list">
-        {% for tag in tags %}
+        {% for tag in tags %} <!__no tags?__>
         <option value="{{ tag.id }}">{{ tag.name }}</option>
         {%endfor%}
     </datalist>
 
     <input type="submit" value="Post">
 
+    
 </form>
 {% endblock %}
